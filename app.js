@@ -1,9 +1,7 @@
-require("./db/connect");
 const express = require("express");
 const app = express();
 const tasks = require("./routes/tasks");
-
-const port = "3000";
+const connectDB = require("./db/connect");
 
 //Middleware
 app.use(express.json());
@@ -35,4 +33,15 @@ app.use("/api/v1/tasks", tasks);
 // app.delete("/api/v1/tasks", (req, res) => {
 //   console.log("Delete Task");
 // });
-app.listen(port, console.log(`App is listeniong on ${port}`));
+
+const port = "3000";
+
+const start = async () => {
+  try {
+    await connectDB();
+    app.listen(port, console.log(`Server is listening on port ${port}`));
+  } catch (error) {
+    console.log(error);
+  }
+};
+start();
