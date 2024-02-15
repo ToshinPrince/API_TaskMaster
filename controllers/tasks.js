@@ -35,10 +35,6 @@ const getTask = async (req, res) => {
   }
 };
 
-const updateTask = (req, res) => {
-  res.send("Update Task");
-};
-
 const deleteTask = async (req, res) => {
   // res.send("Delete Task");
   try {
@@ -54,4 +50,11 @@ const deleteTask = async (req, res) => {
   }
 };
 
-module.exports = { getAllTasks, createTask, getTask, updateTask, deleteTask };
+const updateTask = (req, res) => {
+  res.send("Update Task");
+  try {
+    const { id: taskId } = req.params;
+  } catch (error) {}
+};
+
+module.exports = { getAllTasks, createTask, getTask, deleteTask, updateTask };
