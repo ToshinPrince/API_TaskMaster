@@ -5,13 +5,10 @@ const connectDB = require("./db/connect");
 require("dotenv").config();
 
 //Middleware
+app.use(express.static("./public"));
 app.use(express.json());
 
 //Routes
-app.get("/hello", (req, res) => {
-  res.send("TaskMaster App");
-});
-
 app.use("/api/v1/tasks", tasks);
 
 // //app.get("/api/v1/tasks") - Get all the task
