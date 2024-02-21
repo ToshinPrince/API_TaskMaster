@@ -69,4 +69,9 @@ const updateTask = async (req, res) => {
   }
 };
 
+const putTask = async (req, res) => {
+  try {
+  } catch (error) {}
+};
+
 module.exports = { getAllTasks, createTask, getTask, deleteTask, updateTask };
