@@ -1,15 +1,13 @@
 const { Mongoose } = require("mongoose");
 const Task = require("../models/task");
+const asyncWrapper = require("../middleware/async");
 
-const getAllTasks = async (req, res) => {
+const getAllTasks = asyncWrapper(async (req, res) => {
   // res.send("Get All tasks");
-  try {
-    const tasks = await Task.find({});
-    res.status(200).json({ tasks: tasks });
-  } catch (error) {
-    res.status(500).json({ msg: error });
-  }
-};
+
+  const tasks = await Task.find({});
+  res.status(200).json({ tasks: tasks });
+});
 
 const createTask = async (req, res) => {
   // res.send("Create Task");
@@ -67,11 +65,6 @@ const updateTask = async (req, res) => {
   } catch (error) {
     res.status(500).json({ msg: error });
   }
-};
-
-const putTask = async (req, res) => {
-  try {
-  } catch (error) {}
 };
 
 module.exports = { getAllTasks, createTask, getTask, deleteTask, updateTask };
